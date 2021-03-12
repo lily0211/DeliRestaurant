@@ -54,12 +54,13 @@ background-color: rgba(36, 31, 31, 0.514);}
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
-        <form action="inscription" method="post">
+        <form action="compteUser" method="post">
           <fieldset>
             <legend>Inscription</legend>
            
             <label for="name">Votre nom et prénom</label>
-             <input name="name" type="text" id="name" size="20" maxlength="60"></input><br />
+             <input name="name" type="text" id="name" size="20" maxlength="60" value='<c:out value="${user.email}"></c:out>'>
+      <span class="error">${inscriptionVerification.erreurs['name']}</span><br />
             <label for="adresse">Votre adresse</label> <input
               name="adresse" type="text" id="adresse" size="20"
               maxlength="60"><br />
@@ -81,7 +82,7 @@ background-color: rgba(36, 31, 31, 0.514);}
         size="20" maxlength="60"> <br /> <span class="error">${erreurs['confirmation']}</span>
               <input value="rentrer" type="submit" id="login" class="sansLabel">
               
-              <p class="${empty erreurs ?'succesful' : 'error'}">${resultat}</p>  
+              <p class="${empty inscriptionVerification.erreurs ?'succesful' : 'error'}">${inscriptionVerification.resultat}</p>  
           
           </fieldset>
 

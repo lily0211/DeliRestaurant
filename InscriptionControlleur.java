@@ -68,7 +68,7 @@ public class InscriptionControlleur extends HttpServlet {
 			e.printStackTrace();
 		}
 		System.out.println("wxyfez");
-		this.getServletContext().getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/compteUser.jsp").forward(request, response);
 	}
 
 }

@@ -44,14 +44,14 @@ public class InscriptionVerification {
 		} catch (Exception e){
 		setErreurs(champName,e.getMessage());
 		}
-		user.setName(name);
+		
 		String email=request.getParameter(champEmail);
 		try {
 			verifierEmail(email);
 		} catch(Exception e) {
 		setErreurs(champEmail, e.getMessage());
 		}
-		user.setEmail(email);
+		
 		String password=request.getParameter(champPassword);
 		String confirmation=request.getParameter(champConfirmation);
 		try {
@@ -59,20 +59,25 @@ public class InscriptionVerification {
 		} catch (Exception e) {
 			setErreurs(password, e.getMessage() );
 		}
-		user.setPassword(password);
+		
 		String telephone=request.getParameter(champTelephone);
-		user.setTelephone(telephone);
+		
 		String address=request.getParameter(champAddress);
-		user.setAddress(address);
+		
 		if(erreurs.isEmpty()) {
 			resultat="Bienvenu! Your inscription est réussi";
+			user.setName(name);
+			user.setPassword(password);
+			user.setTelephone(telephone);
+			user.setAddress(address);
+			user.setEmail(email);
 			return user;}
 			else {
 			resultat="erreur! re-inscriez svp";
 			}
-	
-	
 	return user;
+	
+	
 	
 }
 		public void verifierPassword(String password, String confirmation) throws Exception {
@@ -95,12 +100,14 @@ public void verifierNom(String nom) throws Exception {
 }
 //verifier si l'email est rentré correctement
 public void verifierEmail(String email) throws Exception{
-	if(email != null && email.trim().length()!=0) {
-		if(!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
-	} throw new Exception("votre email n'est pas correct");
-} else {
-	throw new Exception("rentrez un email svp");
-}
+	if (email != null && email.trim().length() != 0) {
+		if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
+			throw new Exception("your email is not valid");
+		}
+
+	} else {
+		throw new Exception("your email is not valid");
+	}
 }
 
 }
